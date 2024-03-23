@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .centered {
+            position: relative;
+            text-align: center;
+            display: grid;
+            place-items: center;
+            color: white;
+        }
+
+        .header {
+            color: black;
+        }
+
+        p {
+            color: #111;
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 14px;
+            line-height: 24px;
+            margin: 0 0 24px;
+            text-justify: inter-word;
+        }
+
+        h1 {
+            color: #111;
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            line-height: 1;
+            text-align: center;
+        }
+
+        .messages {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: end;
+            justify-items: end;
+            height: 500px;
+            overflow-y: scroll;
+        }
+
+        .my-msg {
+            font-family: 'Helvetica Neue', sans-serif;
+            font-size: 16px;
+            max-width: 350px;
+            background: royalblue;
+            border-radius: 12px;
+            color: #ececec;
+            padding: 8px;
+            margin: 0;
+        }
+
+        form {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .form-div {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .form-div input {
+            width: 100%;
+        }
+
+        .msg-label {
+            text-align: right;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="centered">
+            <div class="text-center text-white">
+                <title>sentiment analysis app</title>
+            </div>
+            <h1 class="header">Sentiment Analysis Chat App</h1>
+            <p style="max-width: 450px;">
+                A chat app that can show the sentiment in complex messages and predict the complex emotion of text messages in simpler way
+            </p>
+            <div class="messages">
+                {% for message in messages %}
+                <div>
+                    <p class="my-msg">
+                        {{ message.msg }}
+                    </p>
+                    <div class="msg-label">^ {{ message.score }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            <form method="POST" onSubmit="return validate();" class="form">
+                <div class="form-div">
+                    <input type="text" name="text" class="form-control mr-2" />
+                    <button type="submit" class="btn btn-outline-primary" onclick="this.form.submit();">
+                        Submit
+                    </button>
+                </div>
+            </form>
+            <br />
+            <br />
+        </div>
+    </div>
+</body>
+
+</html>
